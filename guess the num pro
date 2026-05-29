@@ -1,0 +1,23 @@
+import random
+
+num = random.randint(1, 100)
+print("Я загадала число от 1 до 100, у тебя есть 7 попыток")
+c = 1
+max_c = 7
+
+guess = int(input("Попробуй угадать:"))
+while guess != num and c < max_c:
+    if abs(guess - num) <= 3:
+        print("Очень близко!")
+    elif num < guess < 100:
+        print("Слишком большое число")
+    elif guess < num:
+        print("Слишком маленьке число")
+    else:
+        print("Число не подходит")
+    guess = int(input("Попробуй угадать:"))
+    c += 1
+if num != guess: 
+    print("Ты проиграл, я загадала число", num)
+else:
+    print("Ты угадал за ", c, "попыток!")

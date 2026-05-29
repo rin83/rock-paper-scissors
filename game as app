@@ -1,0 +1,47 @@
+import tkinter as tk
+import random
+
+window = tk.Tk()
+window.title("Угадай число")
+window.geometry("500x400")
+
+num = random.randint(1, 100)
+c = 1
+max_c = 7
+
+def check_guess():
+    global c
+    
+    guess = int(entry.get())
+
+    if c >= max_c and guess != num:
+        result_label.config(text=f"Ты проиграла. Число было {num}")
+        return
+
+    if guess == num:
+        result_label.config(text=f"Ты угадала за {c} попыток!")
+    else:
+        if abs(guess - num) <= 3:
+            result_label.config(text="Очень близко!")
+        elif guess > num:
+            result_label.config(text="Слишком большое число")
+        elif guess < num:
+            result_label.config(text="Слишком маленькое число")
+        
+        c += 1
+
+label = tk.Label(window, text="Я загадала число от 1 до 100. У тебя 7 попыток")
+label.pack()
+
+entry = tk.Entry(window)
+entry.pack()
+
+button = tk.Button(window, text="Проверить", command=check_guess)
+button.pack()
+
+#button = tk.Button(window, text="Начать заново", command=)  еще у гпт спрошу
+
+result_label = tk.Label(window, text="")
+result_label.pack()
+
+window.mainloop()
